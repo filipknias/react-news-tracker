@@ -36,3 +36,10 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+.header .navbar .navbar-nav .nav-item.active {
+  background-color: white;
+  color: #4D71D9;
+  padding: 8px 20px;
+  border-radius: 8px;
+}
