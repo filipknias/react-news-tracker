@@ -7,7 +7,7 @@ const Header = () => {
       <nav className="navbar">
         <h1 className="navbar-header">News Tracker</h1>  
         <ul className="navbar-nav">
-          <li className="nav-item active">Latest</li>
+          <li className="nav-item active">News</li>
           <li className="nav-item">Trending</li>
           <li className="nav-item">Sources</li>
         </ul>  
