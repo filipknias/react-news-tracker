@@ -1,8 +1,8 @@
 .header {
   background-color: #204ECF;
   color: white;
-  height: 200px;
-  padding: 0 40px;
+  /* height: 300px; */
+  padding-bottom: 40px;
   width: 100%;
 }
 
@@ -47,6 +47,23 @@
 .header .current-page-text {
   text-align: center;
   font-size: 45px;
-  font-weight: 300;
+  font-weight: 400;
   margin-top: 60px; 
+}
+
+.header .current-date-text {
+  font-size: 23px;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.header .current-date-text .date-divider::after {
+  content: '';
+  background-color: white;
+  padding: 1px;
+  margin: 0 10px;
+  border-radius: 10px;
 }

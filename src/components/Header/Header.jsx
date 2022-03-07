@@ -13,6 +13,10 @@ const Header = () => {
         </ul>  
       </nav>
       <h1 className="current-page-text">Current page text</h1>
+      <p className="current-date-text">
+        <span className="date-divider">Monday</span>
+        07.03.2022  
+      </p>
     </div>
   )
 }
