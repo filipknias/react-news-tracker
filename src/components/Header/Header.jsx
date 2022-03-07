@@ -12,6 +12,7 @@ const Header = () => {
           <li className="nav-item">Sources</li>
         </ul>  
       </nav>
+      <h1 className="current-page-text">Current page text</h1>
     </div>
   )
 }
