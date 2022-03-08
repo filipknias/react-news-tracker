@@ -1,5 +1,7 @@
 import React from 'react';
 import "./Article.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCalendar, faGlobe, faUser } from '@fortawesome/free-solid-svg-icons'
 
 const Article = () => {
   return (
@@ -13,9 +15,18 @@ const Article = () => {
           </p>
         </div>
         <div className="article-footer">
-          <div className="article-footer-item">Onet.pl</div>
-          <div className="article-footer-item">25.11.2021</div>
-          <div className="article-footer-item">John Doe</div>
+          <div className="article-footer-item">
+            <FontAwesomeIcon icon={faGlobe} className="article-footer-item-icon" />
+            <p className="article-footer-item-text">Onet.pl</p>
+          </div>
+          <div className="article-footer-item">
+            <FontAwesomeIcon icon={faCalendar} className="article-footer-item-icon" />
+            <p className="article-footer-item-text">25.11.2021</p>
+          </div>
+          <div className="article-footer-item">
+            <FontAwesomeIcon icon={faUser} className="article-footer-item-icon" />
+            <p className="article-footer-item-text">John Doe</p>
+          </div>
         </div> 
       </div>
     </div>

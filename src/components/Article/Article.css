@@ -7,7 +7,12 @@
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   cursor: pointer;
-  transition: 0.3s ease-out;
+  transition: 0.2s ease-out;
+  z-index: 10;
+}
+
+.article:hover {
+  transform: translate(-10px, -10px);
 }
 
 .article .article-image {
@@ -44,17 +49,15 @@
 .article-content .article-footer .article-footer-item {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 15px;
+  font-size: 26px;
+}
+
+.article-content .article-footer .article-footer-item .article-footer-item-text {
   color: #3d3d3d;
-  font-size: 22px;
   font-weight: 500;
 }
 
-.article-content .article-footer .article-footer-item::before {
-  content: '';
-  border-radius: 50%;
-  width: 12px;
-  height: 12px;
-  background-color: #204ECF;
-  margin-right: 5px;
+.article-content .article-footer .article-footer-item .article-footer-item-icon {
+  color: #204ECF;
 }
