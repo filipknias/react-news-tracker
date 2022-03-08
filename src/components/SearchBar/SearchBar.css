@@ -1,0 +1,21 @@
+.search-bar {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.search-bar .input-container {
+  background-color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  width: 1000px;
+}
+
+.search-bar .input-container .text-input {
+  color: black;
+  border: none;
+  outline: none;
+  font-size: 28px;
+  width: 100%;
+}
