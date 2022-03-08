@@ -1,5 +1,6 @@
 import React from 'react';
 import "./Header.css";
+import SearchBar from '../SearchBar/Searchbar';
 
 const Header = () => {
   return (
@@ -12,11 +13,12 @@ const Header = () => {
           <li className="nav-item">Sources</li>
         </ul>  
       </nav>
-      <h1 className="current-page-text">Current page text</h1>
+      <h1 className="header-text">Search for news</h1>
       <p className="current-date-text">
         <span className="date-divider">Monday</span>
         07.03.2022  
       </p>
+      <SearchBar /> 
     </div>
   )
 }
