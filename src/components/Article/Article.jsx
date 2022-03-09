@@ -9,6 +9,7 @@ const Article = () => {
       <img src="https://picsum.photos/500" alt="" className="article-image" />
       <div className="article-content">
         <div>
+          <div className="article-label">Latest</div>
           <h1 className="article-title">Test title</h1>
           <p className="article-description">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo deserunt neque consequatur dolorem eius quasi repellat eveniet? Molestiae impedit aperiam perferendis officiis perspiciatis. Debitis ex repudiandae veritatis dignissimos? Nam, quidem? Laudantium, at. Iste quae, commodi, nesciunt eveniet explicabo deleniti voluptate ratione libero et rerum inventore vitae cum sit nostrum error!  
