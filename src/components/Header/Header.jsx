@@ -1,7 +1,6 @@
 import React from 'react';
 import "./Header.css";
 import SearchBar from '../SearchBar/SearchBar';
-import FiltersPanel from '../FiltersPanel/FiltersPanel';
 
 const Header = () => {
   return (
@@ -21,7 +20,6 @@ const Header = () => {
           07.03.2022  
         </p>
         <SearchBar />
-        <FiltersPanel />
       </div>
     </div>
   )
