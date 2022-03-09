@@ -4,7 +4,7 @@ import Article from '../../components/Article/Article';
 
 const Home = () => {
   return (
-    <div className="home-container">
+    <div>
       <Article />
     </div>
   )

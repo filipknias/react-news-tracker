@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
+
 *, *::after, *::before {
   margin: 0;
   padding: 0;
@@ -15,4 +17,8 @@ ul {
   margin: 0;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
+.routes-container {
+  width: 60%;
+  margin: 50px auto;
+  transform: translateY(-25%);
+}
