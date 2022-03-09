@@ -2,7 +2,11 @@
   background-color: #204ECF;
   color: white;
   padding-bottom: 200px;
-  width: 100%;
+}
+
+.header .header-container {
+  width: 1000px;
+  margin: 0 auto;
 }
 
 .header .navbar {
@@ -11,7 +15,6 @@
   border-bottom: 1px solid #4D71D9;
   display: flex;
   justify-content: space-between;
-  width: 60%;
 }
 
 .header .navbar .navbar-header {
