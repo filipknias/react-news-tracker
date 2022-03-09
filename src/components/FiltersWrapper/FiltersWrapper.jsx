@@ -1,10 +1,10 @@
 import React from 'react';
 import "./FiltersWrapper.css";
 
-const FiltersWrapper = ({ children }) => {
+const FiltersWrapper = () => {
   return (
     <div className="filters-wrapper">
-      {children}
+      
     </div>
   )
 }
