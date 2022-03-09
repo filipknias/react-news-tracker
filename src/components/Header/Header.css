@@ -15,7 +15,7 @@
 }
 
 .header .navbar .navbar-header {
-  font-size: 35px;
+  font-size: 30px;
   font-weight: 500;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .header .navbar .navbar-nav .nav-item {
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 500;
   letter-spacing: 1px;
 }
@@ -45,13 +45,13 @@
 
 .header .header-text {
   text-align: center;
-  font-size: 48px;
+  font-size: 45px;
   font-weight: 400;
   margin-top: 60px; 
 }
 
 .header .current-date-text {
-  font-size: 18px;
+  font-size: 16px;
   text-transform: uppercase;
   font-weight: 400;
   letter-spacing: 1px;
