@@ -33,6 +33,7 @@
   background-color: white;
   border-radius: var(--dropdown-border-radius);
   z-index: 20;
+  box-shadow: 1px 1px 1px 0px #cfcfcf;
 }
 
 .dropdown-item {
@@ -43,6 +44,9 @@
   font-weight: 500;
   border-radius: var(--dropdown-border-radius);
   transition: 0.2s ease-out;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .dropdown-item:hover {
