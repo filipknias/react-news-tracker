@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "./Dropdown.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 
 const Dropdown = ({ children, currentValue }) => {
   const [open, setOpen] = useState(false);
@@ -20,7 +20,7 @@ const Dropdown = ({ children, currentValue }) => {
     <div className="dropdown-container" ref={dropdownRef}>
       <div className="dropdown-trigger" onClick={() => setOpen(!open)}>
         <p>{currentValue}</p>
-        <FontAwesomeIcon icon={faChevronDown} />
+        <FontAwesomeIcon icon={open ? faChevronUp : faChevronDown} />
       </div>
       <div className={`dropdown ${open ? 'dropdown-opened' : 'dropdown-closed'}`}>
         {children}
