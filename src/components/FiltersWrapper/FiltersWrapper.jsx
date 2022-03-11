@@ -73,10 +73,10 @@ const languages = [
 const FiltersWrapper = () => {
   return (
     <div className="filters-wrapper">
-      <Dropdown currentValue="Germany">
+      <Dropdown currentValue="Germany" label="Languages">
         {languages.map(({ text, flag, value }) =>  (
-          <Dropdown.Item onClick={() => console.log(value)}>
-            <img src={flag} alt={`${text} flag`} height="20" />
+          <Dropdown.Item onClick={() => console.log(value)} key={value}>
+            <img src={flag} alt={`${text} flag`} height="15" />
             {text}
           </Dropdown.Item>
         ))}

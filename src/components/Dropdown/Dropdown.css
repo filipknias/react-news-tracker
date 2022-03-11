@@ -36,6 +36,13 @@
   box-shadow: 1px 1px 1px 0px #cfcfcf;
 }
 
+.dropdown-container .dropdown-label {
+  color: white;
+  font-size: 17px;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
 .dropdown-item {
   padding: 10px 15px;
   color: #383838;

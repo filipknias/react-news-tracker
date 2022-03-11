@@ -1,26 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
 import "./Dropdown.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
-const Dropdown = ({ children, currentValue }) => {
+const Dropdown = ({ children, currentValue, label }) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef();
 
   useEffect(() => {
-    window.onclick = (e) => {
-      const dropdownEl = dropdownRef.current;
-      if (!dropdownEl.contains(e.target)) {
-        setOpen(false);
+      window.onclick = (e) => {
+        if (!dropdownRef.current.contains(e.target)) {
+          setOpen(false);
+        };
       };
-    };
   }, []);
 
   return (
     <div className="dropdown-container" ref={dropdownRef}>
+      <div className="dropdown-label">{label}</div>
       <div className="dropdown-trigger" onClick={() => setOpen(!open)}>
         <p>{currentValue}</p>
-        <FontAwesomeIcon icon={open ? faChevronUp : faChevronDown} />
+        <FontAwesomeIcon icon={faChevronDown} />
       </div>
       <div className={`dropdown ${open ? 'dropdown-opened' : 'dropdown-closed'}`}>
         {children}
