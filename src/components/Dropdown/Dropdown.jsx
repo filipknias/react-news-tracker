@@ -17,7 +17,7 @@ const Dropdown = ({ children, currentValue, label }) => {
 
   return (
     <div className="dropdown-container" ref={dropdownRef}>
-      <div className="dropdown-label">{label}</div>
+      <h2 className="filter-label">{label}</h2>
       <div className="dropdown-trigger" onClick={() => setOpen(!open)}>
         <p>{currentValue}</p>
         <FontAwesomeIcon icon={faChevronDown} />

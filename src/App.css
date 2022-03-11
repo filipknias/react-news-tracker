@@ -22,3 +22,12 @@ ul {
   margin: 50px auto;
   transform: translateY(-40%);
 }
+
+:root {
+  --dark-blue: #204ECF;
+  --light-blue: rgba(166, 212, 255, 0.904);
+  --light-blue-text: #061f31;
+  --input-border-radius: 8px;
+  --input-font-size: 18px;
+  --input-padding: 10px 15px;
+}

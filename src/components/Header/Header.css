@@ -1,5 +1,5 @@
 .header {
-  background-color: #204ECF;
+  background-color: var(--dark-blue);
   color: white;
   padding-bottom: 200px;
 }
@@ -41,7 +41,7 @@
 
 .header .navbar .navbar-nav .nav-item.active {
   background-color: white;
-  color: #4D71D9;
+  color: #3a5eca;
   padding: 8px 20px;
   border-radius: 8px;
 }

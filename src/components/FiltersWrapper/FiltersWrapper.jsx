@@ -73,7 +73,7 @@ const languages = [
 const FiltersWrapper = () => {
   return (
     <div className="filters-wrapper">
-      <Dropdown currentValue="Germany" label="Languages">
+      <Dropdown currentValue="Germany" label="Language">
         {languages.map(({ text, flag, value }) =>  (
           <Dropdown.Item onClick={() => console.log(value)} key={value}>
             <img src={flag} alt={`${text} flag`} height="15" />
@@ -81,6 +81,14 @@ const FiltersWrapper = () => {
           </Dropdown.Item>
         ))}
       </Dropdown>
+      <div>
+        <h2 className="filter-label">From date</h2>
+        <input type="date" className="custom-date-input" />
+      </div>
+      <div>
+        <h2 className="filter-label">To date</h2>
+        <input type="date" className="custom-date-input" />
+      </div>
     </div>
   )
 }
