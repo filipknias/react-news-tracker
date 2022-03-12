@@ -4,16 +4,9 @@ export const ArticlesContext = createContext();
 
 const initialState = {
   articles: [],
-  filters: {
-    language: null,
-    sources: [],
-    sortBy: 'relevancy',
-    fromDate: null,
-    toDate: null,
-    keywords: '',
-  },
   loading: false,
   error: null,
+  pagination: null,
 };
 
 const ArticlesProvider = ({ children }) => {

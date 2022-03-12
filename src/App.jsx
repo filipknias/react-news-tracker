@@ -11,14 +11,14 @@ import ArticlesProvider from './context/ArticlesProvider';
 const App = () => {
   return (
     <BrowserRouter>
-      <ArticlesProvider>
         <Header />
         <div className="routes-container">
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
+          <ArticlesProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </ArticlesProvider>
         </div>
-      </ArticlesProvider>
     </BrowserRouter>
   );
 }

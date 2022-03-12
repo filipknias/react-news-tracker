@@ -7,12 +7,8 @@ function useArticles() {
 
   // Getters
   const getArticles = () => state.articles;
-  const getFilters = () => state.filters;
 
   // Setters
-  const setFilters = (filters) => {
-    setState((state) => { return { ...state, filters: { ...state.filters, ...filters } } });
-  };
   const setArticles = (articles) => {
     setState((state) => { return { ...state, articles } });
   };
@@ -29,8 +25,6 @@ function useArticles() {
 
   return {
     getArticles,
-    getFilters,
-    setFilters,
     fetchArticles,
   };
 }
