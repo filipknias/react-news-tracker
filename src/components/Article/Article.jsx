@@ -3,34 +3,37 @@ import "./Article.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar, faGlobe, faUser } from '@fortawesome/free-solid-svg-icons'
 
-const Article = () => {
+const formatPublishDate = (dateString) => {
+  const splittedDate = dateString.split('T').join(' ');
+  const date = splittedDate.slice(0, splittedDate.length - 1);
+  return date;
+};
+
+const Article = ({ photo, title, publishedAt, description, source, author, url }) => {
   return (
-    <div className="article">
-      <img src="https://picsum.photos/500" alt="" className="article-image" />
+    <a href={url} target="_blank" className="article">
+      <img src={photo} alt="Article image" className="article-image" />
       <div className="article-content">
         <div>
-          <div className="article-label">Latest</div>
-          <h1 className="article-title">Test title</h1>
-          <p className="article-description">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo deserunt neque consequatur dolorem eius quasi repellat eveniet? Molestiae impedit aperiam perferendis officiis perspiciatis. Debitis ex repudiandae veritatis dignissimos? Nam, quidem? Laudantium, at. Iste quae, commodi, nesciunt eveniet explicabo deleniti voluptate ratione libero et rerum inventore vitae cum sit nostrum error!  
-          </p>
+          <h1 className="article-title">{title}</h1>
+          <p className="article-description">{description}</p>
         </div>
         <div className="article-footer">
           <div className="article-footer-item">
             <FontAwesomeIcon icon={faGlobe} className="article-footer-item-icon" />
-            <p className="article-footer-item-text">Onet.pl</p>
+            <p className="article-footer-item-text">{source}</p>
           </div>
           <div className="article-footer-item">
             <FontAwesomeIcon icon={faCalendar} className="article-footer-item-icon" />
-            <p className="article-footer-item-text">25.11.2021</p>
+            <p className="article-footer-item-text">{formatPublishDate(publishedAt)}</p>
           </div>
           <div className="article-footer-item">
             <FontAwesomeIcon icon={faUser} className="article-footer-item-icon" />
-            <p className="article-footer-item-text">John Doe</p>
+            <p className="article-footer-item-text">{author ? author : "Unknown"}</p>
           </div>
         </div> 
       </div>
-    </div>
+    </a>
   )
 }
 
