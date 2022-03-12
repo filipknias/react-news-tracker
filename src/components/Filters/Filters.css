@@ -11,15 +11,3 @@
   margin-bottom: 5px;
   user-select: none;
 }
-
-.custom-date-input {
-  background-color: var(--light-blue); 
-  outline: none;
-  border: none;
-  border-radius: var(--input-border-radius);
-  color: var(--light-blue-text);
-  font-size: var(--input-font-size);
-  font-weight: 500;
-  padding: var(--input-padding);
-  cursor: pointer;
-}

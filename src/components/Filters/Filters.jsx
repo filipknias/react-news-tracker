@@ -1,6 +1,7 @@
 import React from 'react';
 import "./Filters.css";
 import Dropdown from '../Dropdown/Dropdown';
+import DateSelect from '../DateSelect/DateSelect';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDownShortWide } from '@fortawesome/free-solid-svg-icons'
 
@@ -102,14 +103,8 @@ const Filters = () => {
           Date
         </Dropdown.Item>
       </Dropdown>
-      <div>
-        <h2 className="filter-label">From date</h2>
-        <input type="date" className="custom-date-input" />
-      </div>
-      <div>
-        <h2 className="filter-label">To date</h2>
-        <input type="date" className="custom-date-input" />
-      </div>
+      <DateSelect label="From date" />
+      <DateSelect label="To date" />
     </div>
   )
 }
