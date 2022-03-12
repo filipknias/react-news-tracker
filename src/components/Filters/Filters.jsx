@@ -1,5 +1,5 @@
 import React from 'react';
-import "./FiltersWrapper.css";
+import "./Filters.css";
 import Dropdown from '../Dropdown/Dropdown';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDownShortWide } from '@fortawesome/free-solid-svg-icons'
@@ -72,7 +72,7 @@ const languages = [
   },
 ];
 
-const FiltersWrapper = () => {
+const Filters = () => {
   return (
     <div className="filters-wrapper">
       <Dropdown currentValue="Germany" label="Language">
@@ -114,4 +114,4 @@ const FiltersWrapper = () => {
   )
 }
 
-export default FiltersWrapper;
+export default Filters;
