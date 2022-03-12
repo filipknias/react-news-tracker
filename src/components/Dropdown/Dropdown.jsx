@@ -8,11 +8,11 @@ const Dropdown = ({ children, currentValue, label }) => {
   const dropdownRef = useRef();
 
   useEffect(() => {
-      window.onclick = (e) => {
+      window.addEventListener('click', (e) => {
         if (!dropdownRef.current.contains(e.target)) {
           setOpen(false);
         };
-      };
+      });
   }, []);
 
   useEffect(() => {
