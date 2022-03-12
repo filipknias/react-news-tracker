@@ -1,6 +1,8 @@
 import React from 'react';
 import "./FiltersWrapper.css";
 import Dropdown from '../Dropdown/Dropdown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowDownShortWide } from '@fortawesome/free-solid-svg-icons'
 
 const languages = [
   {
@@ -80,6 +82,25 @@ const FiltersWrapper = () => {
             {text}
           </Dropdown.Item>
         ))}
+      </Dropdown>
+      <Dropdown currentValue="Sources" label="Sources">
+        <Dropdown.Item>Source #1</Dropdown.Item>
+        <Dropdown.Item>Source #2</Dropdown.Item>
+        <Dropdown.Item>Source #3</Dropdown.Item>
+      </Dropdown>
+      <Dropdown currentValue="Relevancy" label="Sort by">
+        <Dropdown.Item>
+          <FontAwesomeIcon icon={faArrowDownShortWide} />
+          Relevancy
+        </Dropdown.Item>
+        <Dropdown.Item>
+          <FontAwesomeIcon icon={faArrowDownShortWide} />
+          Popularity
+        </Dropdown.Item>
+        <Dropdown.Item>
+          <FontAwesomeIcon icon={faArrowDownShortWide} />
+          Date
+        </Dropdown.Item>
       </Dropdown>
       <div>
         <h2 className="filter-label">From date</h2>

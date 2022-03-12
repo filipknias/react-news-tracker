@@ -15,6 +15,10 @@ const Dropdown = ({ children, currentValue, label }) => {
       };
   }, []);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [currentValue]);
+
   return (
     <div className="dropdown-container" ref={dropdownRef}>
       <h2 className="filter-label">{label}</h2>
