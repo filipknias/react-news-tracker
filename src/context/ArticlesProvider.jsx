@@ -6,7 +6,19 @@ const initialState = {
   articles: [],
   loading: false,
   error: null,
-  pagination: null,
+  filters: {
+    language: null,
+    sources: [],
+    sortBy: 'relevancy',
+    fromDate: null,
+    toDate: null,
+    keywords: '',
+  },
+  pagination: {
+    pageSize: 5,
+    currentPage: 1,
+    totalResults: null,
+  },
 };
 
 const ArticlesProvider = ({ children }) => {
