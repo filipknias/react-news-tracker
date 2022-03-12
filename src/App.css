@@ -20,7 +20,7 @@ ul {
 .routes-container {
   width: 60%;
   margin: 50px auto;
-  transform: translateY(-40%);
+  transform: translateY(-200px);
 }
 
 :root {

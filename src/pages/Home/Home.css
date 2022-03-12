@@ -1,4 +1,5 @@
-.home-container {
-  width: 60%;
-  margin: 50px auto;
+.articles-container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
 }
