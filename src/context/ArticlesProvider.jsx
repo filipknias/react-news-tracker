@@ -10,7 +10,10 @@ const initialState = {
     sortBy: 'relevancy',
     fromDate: null,
     toDate: null,
+    keywords: '',
   },
+  loading: false,
+  error: null,
 };
 
 const ArticlesProvider = ({ children }) => {
