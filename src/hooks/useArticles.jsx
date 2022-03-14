@@ -7,10 +7,14 @@ function useArticles() {
 
   // Getters
   const getArticles = () => state.articles;
+  const getPagination = () => state.pagination;
 
   // Setters
   const setArticles = (articles) => {
     setState((state) => { return { ...state, articles } });
+  };
+  const setPagination = (pagination) => {
+    setState((state) => { return { ...state, pagination } });
   };
 
   // Actions
@@ -18,13 +22,18 @@ function useArticles() {
     if (filters) {
       // TODO: Fetch articles with given filters
     } else {
-      const { articles } = await fetchAllArticles();
+      const { articles, totalResults } = await fetchAllArticles();
       setArticles(articles);
+      setPagination({
+        ...state.pagination,
+        totalResults,
+      });
     }
   };
 
   return {
     getArticles,
+    getPagination,
     fetchArticles,
   };
 }

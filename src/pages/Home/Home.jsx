@@ -2,9 +2,12 @@ import React, { useEffect } from 'react';
 import "./Home.css";
 import Article from '../../components/Article/Article';
 import useArticles from '../../hooks/useArticles';
+import Pagination from '../../components/Pagination/Pagination';
 
 const Home = () => {
-  const { fetchArticles, getArticles } = useArticles();
+  const { fetchArticles, getArticles, getPagination } = useArticles();
+  const pagination = getPagination();
+  
   useEffect(() => {
     fetchArticles();
   }, []);
@@ -24,6 +27,7 @@ const Home = () => {
             url={article.url}
           />
         ))}
+        <Pagination pagesCount={10} currentPage={pagination.currentPage} />
       </div>
     </>
   )
