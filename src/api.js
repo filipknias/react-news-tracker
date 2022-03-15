@@ -1,9 +1,8 @@
 import axios from 'axios';
 const baseUrl = 'https://newsapi.org/v2';
 const apiKey = process.env.REACT_APP_NEWS_API_KEY;
-const pageSize = 5;
 
-export const fetchAllArticles = async () => {
+export const fetchAllArticles = async (pageSize) => {
   try {
     // Get ip address
     const ipApiUrl = 'http://api.ipapi.com';
@@ -16,6 +15,6 @@ export const fetchAllArticles = async () => {
     return response.data;
   } catch (err) {
     console.log(err.response);
-    return err;
+    throw new Error(err.response.message);
   }
 };

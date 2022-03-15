@@ -11,7 +11,7 @@ const Home = () => {
   useEffect(() => {
     fetchArticles();
   }, []);
-
+  
   return (
     <>
       <div className="articles-container">
@@ -27,7 +27,7 @@ const Home = () => {
             url={article.url}
           />
         ))}
-        <Pagination pagesCount={10} currentPage={pagination.currentPage} />
+        {pagination.totalPages && <Pagination pagesCount={pagination.totalPages} currentPage={pagination.currentPage} />}
       </div>
     </>
   )

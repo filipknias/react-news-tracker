@@ -22,11 +22,13 @@ function useArticles() {
     if (filters) {
       // TODO: Fetch articles with given filters
     } else {
-      const { articles, totalResults } = await fetchAllArticles();
+      // TODO: add try catch to catch errors from api
+      const { articles, totalResults } = await fetchAllArticles(state.pagination.pageSize);
       setArticles(articles);
       setPagination({
         ...state.pagination,
         totalResults,
+        totalPages: Math.ceil(totalResults / state.pagination.pageSize),
       });
     }
   };

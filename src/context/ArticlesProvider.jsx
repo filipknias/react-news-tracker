@@ -15,9 +15,10 @@ const initialState = {
     keywords: '',
   },
   pagination: {
-    pageSize: 5,
+    pageSize: 8,
     currentPage: 1,
     totalResults: null,
+    totalPages: null,
   },
 };
 
