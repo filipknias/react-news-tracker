@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchAllArticles } from '../../api';
 
 const initialState = {
@@ -21,26 +21,34 @@ const initialState = {
   },
 };
 
+export const fetchArticles = createAsyncThunk('articles/fetchArticles', async (obj, { getState }) => {
+  const { articles } = getState();
+  return await fetchAllArticles(articles.pagination.pageSize);
+;});
+
 export const articlesSlice = createSlice({
   name: 'articles',
   initialState,
-  reducers: {
-    fetchArticles: async (state) => {
-      try {
-        const { articles, totalResults } = await fetchAllArticles(state.pagination.pageSize);
-        state.articles = articles;
-        state.pagination = {
-          ...state.pagination,
-          totalResults,
-          totalPages: Math.ceil(totalResults / state.pagination.pageSize),
-        };
-      } catch (err) {
-        console.log(err);
-      }
+  extraReducers: {
+    [fetchArticles.pending]: (state) => {
+      state.error = null;
+      state.loading = true;
+    },
+    [fetchArticles.fulfilled]: (state, { payload }) => {
+      state.articles = payload.articles;
+      state.pagination = {
+        ...state.pagination,
+        totalResults: payload.totalResults,
+        totalPages: Math.ceil(payload.totalResults / state.pagination.pageSize),
+      };
+    },
+    [fetchArticles.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
     },
   },
 });
 
-export const { fetchArticles } = articlesSlice.actions;
+export const { } = articlesSlice.actions;
 
 export default articlesSlice.reducer;
