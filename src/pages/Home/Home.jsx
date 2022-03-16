@@ -4,12 +4,14 @@ import Article from '../../components/Article/Article';
 import Pagination from '../../components/Pagination/Pagination';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchArticles } from '../../redux/features/articlesSlice';
+import usePagination from '../../hooks/usePagination';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const pagination = useSelector((state) => state.articles.pagination);
+  const { totalPages, currentPage } = useSelector((state) => state.articles.pagination);
   const articles = useSelector((state) => state.articles);
-  
+  const { goToPage } = usePagination();
+
   useEffect(() => {
     dispatch(fetchArticles());
   }, []);
@@ -29,7 +31,7 @@ const Home = () => {
             url={article.url}
           />
         ))}
-        {pagination.totalPages && <Pagination pagesCount={pagination.totalPages} currentPage={pagination.currentPage} />}
+        {totalPages && <Pagination pagesCount={totalPages} currentPage={currentPage} onChange={goToPage} />}
       </div>
     </>
   )

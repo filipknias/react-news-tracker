@@ -16,7 +16,7 @@ const App = () => {
         <Header />
         <div className="routes-container">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route exact path="/" element={<Home />} />
           </Routes>
         </div>
       </BrowserRouter>

@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./Pagination.css";
 
-const Pagination = ({ pagesCount, currentPage }) => {
-  const [paginationItems] = useState(() => {
+const Pagination = ({ pagesCount, currentPage, onChange }) => {
+  const [paginationItems, setPaginationItems] = useState([]); 
+
+  useEffect(() => {
     const items = [];
-    for (let i=1;i<=pagesCount;i++) {
+    for (let page=1; page<=pagesCount; page++) {
       items.push(
-        <div key={i} className={`pagination-item ${i === currentPage ? 'pagination-item-active' : ''}`}>{i}</div>
+        <div
+          key={page}
+          onClick={page === currentPage ? () => undefined: () => onChange(page)}
+          className={`pagination-item ${page == currentPage ? 'pagination-item-active' : ''}`}
+        >
+          {page}
+        </div>
       );
-    };
-    return items;
-  }); 
+    }
+    setPaginationItems(items);
+  }, [currentPage]);
+
   return (
     <div className="pagination">{paginationItems}</div>
   )

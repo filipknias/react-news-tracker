@@ -21,14 +21,19 @@ const initialState = {
   },
 };
 
-export const fetchArticles = createAsyncThunk('articles/fetchArticles', async (obj, { getState }) => {
+export const fetchArticles = createAsyncThunk('articles/fetchArticles', async (args, { getState }) => {
   const { articles } = getState();
-  return await fetchAllArticles(articles.pagination.pageSize);
+  return await fetchAllArticles(articles.pagination.pageSize, articles.pagination.currentPage);
 ;});
 
 export const articlesSlice = createSlice({
   name: 'articles',
   initialState,
+  reducers: {
+    setCurrentPage: (state, action) => {
+      state.pagination.currentPage = action.payload;
+    },
+  },
   extraReducers: {
     [fetchArticles.pending]: (state) => {
       state.error = null;
@@ -49,6 +54,6 @@ export const articlesSlice = createSlice({
   },
 });
 
-export const { } = articlesSlice.actions;
+export const { setCurrentPage } = articlesSlice.actions;
 
 export default articlesSlice.reducer;
