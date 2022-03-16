@@ -11,7 +11,7 @@ const Pagination = ({ pagesCount, currentPage, onChange }) => {
         <div
           key={page}
           onClick={page === currentPage ? () => undefined: () => onChange(page)}
-          className={`pagination-item ${page == currentPage ? 'pagination-item-active' : ''}`}
+          className={`pagination-item ${page === currentPage ? 'pagination-item-active' : ''}`}
         >
           {page}
         </div>

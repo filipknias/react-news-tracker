@@ -10,7 +10,7 @@ const usePagination = () => {
   useEffect(() => {
     const currentPage = searchParams.get('page');
     if (currentPage) {
-      dispatch(setCurrentPage(currentPage));
+      dispatch(setCurrentPage(parseInt(currentPage)));
       dispatch(fetchArticles());
       window.scrollTo(0, 0);
     }
