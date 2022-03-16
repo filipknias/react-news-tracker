@@ -1,0 +1,16 @@
+.scroll-to-top {
+  background-color: var(--dark-blue);
+  padding: 10px;
+  position: fixed;
+  bottom: 50px;
+  right: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.scroll-to-top .scroll-icon {
+  color: white;
+  font-size: 35px;
+}

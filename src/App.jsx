@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Home from './pages/Home/Home';
 import Header from './components/Header/Header';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import store from './redux/store';
 import { Provider } from 'react-redux';
 
@@ -14,6 +15,7 @@ const App = () => {
     <Provider store={store}>
       <BrowserRouter>
         <Header />
+        <ScrollToTop />
         <div className="routes-container">
           <Routes>
             <Route exact path="/" element={<Home />} />
