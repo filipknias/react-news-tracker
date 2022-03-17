@@ -4,7 +4,7 @@ import { fetchAllArticles } from '../../api';
 const initialState = {
   articles: [],
   loading: false,
-  error: null,
+  isError: false,
   filters: {
     language: null,
     sources: [],
@@ -36,7 +36,7 @@ export const articlesSlice = createSlice({
   },
   extraReducers: {
     [fetchArticles.pending]: (state) => {
-      state.error = null;
+      state.isError = false;
       state.loading = true;
     },
     [fetchArticles.fulfilled]: (state, { payload }) => {
@@ -46,10 +46,11 @@ export const articlesSlice = createSlice({
         totalResults: payload.totalResults,
         totalPages: Math.ceil(payload.totalResults / state.pagination.pageSize),
       };
-    },
-    [fetchArticles.rejected]: (state, action) => {
       state.loading = false;
-      state.error = action.payload;
+    },
+    [fetchArticles.rejected]: (state) => {
+      state.loading = false;
+      state.isError = true;
     },
   },
 });

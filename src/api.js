@@ -14,7 +14,6 @@ export const fetchAllArticles = async (pageSize, currentPage = 1) => {
     const response = await axios.get(endpoint);
     return response.data;
   } catch (err) {
-    console.log(err.response);
-    throw new Error(err.response.message);
+    throw new Error();
   }
 };

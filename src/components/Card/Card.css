@@ -5,3 +5,33 @@
   color: black;
   padding: 20px 40px;
 } 
+
+.card-container {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.card-container .card-icon {
+  font-size: 45px;
+  animation: spinner 0.8s infinite;
+}
+
+.card-container .card-icon.card-icon-loading {
+  color: var(--dark-blue);
+}
+
+.card-container .card-icon.card-icon-error {
+  color: #f14f41;
+}
+
+.card-container .card-title {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.card-container .card-description {
+  font-size: 20px;
+  font-weight: 300;
+  margin-top: 5px;
+}
