@@ -33,6 +33,12 @@ export const articlesSlice = createSlice({
     setCurrentPage: (state, action) => {
       state.pagination.currentPage = action.payload;
     },
+    setFilters: (state, action) => {
+      state.filters = {
+        ...state.filters,
+        ...action.payload,
+      };
+    },
   },
   extraReducers: {
     [fetchArticles.pending]: (state) => {
@@ -55,6 +61,6 @@ export const articlesSlice = createSlice({
   },
 });
 
-export const { setCurrentPage } = articlesSlice.actions;
+export const { setCurrentPage, setFilters } = articlesSlice.actions;
 
 export default articlesSlice.reducer;

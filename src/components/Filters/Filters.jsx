@@ -2,8 +2,10 @@ import React from 'react';
 import "./Filters.css";
 import Dropdown from '../Dropdown/Dropdown';
 import DateSelect from '../DateSelect/DateSelect';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDownShortWide } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDownShortWide } from '@fortawesome/free-solid-svg-icons';
+import { setFilters } from '../../redux/features/articlesSlice';
+import { useSelector, useDispatch } from 'react-redux';
 
 const languages = [
   {
@@ -73,38 +75,49 @@ const languages = [
   },
 ];
 
+const countryCodeToText = (countryCode) => {
+  return languages.find((lang) => lang.value === countryCode).text;
+};
+
+const capitalizeFirstLetter = (string) => {
+  const splittedString = string.slice(1);
+  return `${string[0].toUpperCase()}${splittedString}`;
+};
+
 const Filters = () => {
+  const { language, sortBy } = useSelector((state) => state.articles.filters); 
+  const dispatch = useDispatch();
   return (
     <div className="filters-wrapper">
-      <Dropdown currentValue="Germany" label="Language">
+      <Dropdown currentValue={language ? countryCodeToText(language) : "All"} label="Language">
         {languages.map(({ text, flag, value }) =>  (
-          <Dropdown.Item onClick={() => console.log(value)} key={value}>
+          <Dropdown.Item onClick={() => dispatch(setFilters({ language: value }))} key={value}>
             <img src={flag} alt={`${text} flag`} height="15" />
             {text}
           </Dropdown.Item>
         ))}
       </Dropdown>
-      <Dropdown currentValue="Sources" label="Sources">
+      <Dropdown currentValue="Onet.pl" label="Sources">
         <Dropdown.Item>Source #1</Dropdown.Item>
         <Dropdown.Item>Source #2</Dropdown.Item>
         <Dropdown.Item>Source #3</Dropdown.Item>
       </Dropdown>
-      <Dropdown currentValue="Relevancy" label="Sort by">
-        <Dropdown.Item>
+      <Dropdown currentValue={capitalizeFirstLetter(sortBy)} label="Sort by">
+        <Dropdown.Item onClick={() => dispatch(setFilters({ sortBy: "relevancy" }))}>
           <FontAwesomeIcon icon={faArrowDownShortWide} />
           Relevancy
         </Dropdown.Item>
-        <Dropdown.Item>
+        <Dropdown.Item onClick={() => dispatch(setFilters({ sortBy: "popularity" }))}>
           <FontAwesomeIcon icon={faArrowDownShortWide} />
           Popularity
         </Dropdown.Item>
-        <Dropdown.Item>
+        <Dropdown.Item onClick={() => dispatch(setFilters({ sortBy: "publishedAt" }))}>
           <FontAwesomeIcon icon={faArrowDownShortWide} />
           Date
         </Dropdown.Item>
       </Dropdown>
-      <DateSelect label="From date" />
-      <DateSelect label="To date" />
+      <DateSelect label="From date" onChange={(date) => dispatch(setFilters({ fromDate: date }))} />
+      <DateSelect label="To date" onChange={(date) => dispatch(setFilters({ toDate: date }))} />
     </div>
   )
 }
