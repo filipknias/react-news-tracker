@@ -9,6 +9,7 @@ const Dropdown = ({ children, currentValue, label }) => {
 
   useEffect(() => {
       window.addEventListener('click', (e) => {
+        if (dropdownRef.current === null) return;
         if (!dropdownRef.current.contains(e.target)) {
           setOpen(false);
         };
