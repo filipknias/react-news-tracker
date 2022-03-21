@@ -14,11 +14,11 @@
 
 .card-container .card-icon {
   font-size: 45px;
-  animation: spinner 0.8s infinite;
 }
 
 .card-container .card-icon.card-icon-loading {
   color: var(--dark-blue);
+  animation: spinner 0.8s infinite;
 }
 
 .card-container .card-icon.card-icon-error {

@@ -87,6 +87,7 @@ const capitalizeFirstLetter = (string) => {
 const Filters = () => {
   const { language, sortBy } = useSelector((state) => state.articles.filters); 
   const dispatch = useDispatch();
+
   return (
     <div className="filters-wrapper">
       <Dropdown currentValue={language ? countryCodeToText(language) : "All"} label="Language">
@@ -96,11 +97,6 @@ const Filters = () => {
             {text}
           </Dropdown.Item>
         ))}
-      </Dropdown>
-      <Dropdown currentValue="Onet.pl" label="Sources">
-        <Dropdown.Item>Source #1</Dropdown.Item>
-        <Dropdown.Item>Source #2</Dropdown.Item>
-        <Dropdown.Item>Source #3</Dropdown.Item>
       </Dropdown>
       <Dropdown currentValue={capitalizeFirstLetter(sortBy)} label="Sort by">
         <Dropdown.Item onClick={() => dispatch(setFilters({ sortBy: "relevancy" }))}>
@@ -113,11 +109,11 @@ const Filters = () => {
         </Dropdown.Item>
         <Dropdown.Item onClick={() => dispatch(setFilters({ sortBy: "publishedAt" }))}>
           <FontAwesomeIcon icon={faArrowDownShortWide} />
-          Date
+          Published At
         </Dropdown.Item>
       </Dropdown>
-      <DateSelect label="From date" onChange={(date) => dispatch(setFilters({ fromDate: date }))} />
-      <DateSelect label="To date" onChange={(date) => dispatch(setFilters({ toDate: date }))} />
+      <DateSelect label="From date" onChange={(date) => dispatch(setFilters({ from: date }))} />
+      <DateSelect label="To date" onChange={(date) => dispatch(setFilters({ to: date }))} />
     </div>
   )
 }
