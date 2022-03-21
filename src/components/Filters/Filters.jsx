@@ -3,7 +3,7 @@ import "./Filters.css";
 import Dropdown from '../Dropdown/Dropdown';
 import DateSelect from '../DateSelect/DateSelect';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDownShortWide } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDownShortWide, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { setFilters } from '../../redux/features/articlesSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -20,7 +20,7 @@ const languages = [
   },
   {
     value: 'en',
-    text: 'United Kingdom',
+    text: 'English',
     flag: 'https://countryflagsapi.com/svg/gb',
   },
   {
@@ -91,6 +91,10 @@ const Filters = () => {
   return (
     <div className="filters-wrapper">
       <Dropdown currentValue={language ? countryCodeToText(language) : "All"} label="Language">
+        <Dropdown.Item onClick={() => dispatch(setFilters({ language: null }))}>
+          <FontAwesomeIcon icon={faGlobe} className="globe-icon"/>
+          All
+        </Dropdown.Item>
         {languages.map(({ text, flag, value }) =>  (
           <Dropdown.Item onClick={() => dispatch(setFilters({ language: value }))} key={value}>
             <img src={flag} alt={`${text} flag`} height="15" />

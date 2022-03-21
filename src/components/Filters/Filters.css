@@ -11,3 +11,8 @@
   margin-bottom: 5px;
   user-select: none;
 }
+
+.globe-icon {
+  color: var(--dark-blue);
+  font-size: 20px;
+}
