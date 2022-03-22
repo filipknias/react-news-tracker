@@ -3,7 +3,7 @@ import "./Home.css";
 import Article from '../../components/Article/Article';
 import Pagination from '../../components/Pagination/Pagination';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchArticles, searchArticles, setCurrentPage } from '../../redux/features/articlesSlice';
+import { fetchArticles, searchArticles, setCurrentPage, getValidFilters } from '../../redux/features/articlesSlice';
 import LoadingCard from '../../components/Card/LoadingCard';
 import ErrorCard from '../../components/Card/ErrorCard';
 import { useSearchParams } from "react-router-dom";
@@ -15,6 +15,7 @@ const Home = () => {
   const loading  = useSelector((state) => state.articles.loading);
   const isError  = useSelector((state) => state.articles.isError);
   const [searchParams, setSearchParams] = useSearchParams();
+  const filters = useSelector((state) => state.articles.filters);
   
   useEffect(() => {
     const paramsArray = [];
@@ -34,6 +35,11 @@ const Home = () => {
       dispatch(searchArticles(queryString));
     }
   }, [searchParams]);
+
+  const handlePageChange = (page) => {
+    dispatch(setCurrentPage(page));
+    setSearchParams({ ...getValidFilters(filters), page });
+  };
 
   return (
     <>
@@ -57,7 +63,7 @@ const Home = () => {
                 <Pagination 
                   pagesCount={totalPages} 
                   currentPage={currentPage} 
-                  onChange={(page) => setSearchParams({ page })} 
+                  onChange={(page) => handlePageChange(page)} 
                 />
               }
             </div>

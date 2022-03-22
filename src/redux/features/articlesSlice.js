@@ -30,6 +30,13 @@ export const searchArticles = createAsyncThunk('articles/searchArticles', async 
   return await fetchQueryArticles(queryString, articles.pagination.pageSize);
 });
 
+export const getValidFilters = (filters) => {
+  const validFiltersArray = Object.entries(filters).filter(([key, value]) => value !== null);
+  const validFilters = {};
+  validFiltersArray.forEach(([key, value]) => validFilters[key] = value);
+  return validFilters;
+};
+
 const getTotalPages = (totalResults, pageSize) => {
   return Math.ceil(totalResults / pageSize);
 };
