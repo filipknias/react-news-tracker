@@ -18,16 +18,10 @@ export const fetchAllArticles = async (pageSize, currentPage = 1) => {
   }
 };
 
-export const fetchQueryArticles = async (filters, pageSize, currentPage = 1) => {
-  try {
-    // Convert query object to query string
-    const queryString = Object.entries(filters)
-                              .filter(([key, value]) => value !== null)
-                              .map(([key, value]) => `${key}=${value}`)
-                              .join("&");
-                              
+export const fetchQueryArticles = async (queryString, pageSize) => {
+  try {                  
     // Fetch articles
-    const response = await axios.get(`${baseUrl}/everything?apiKey=${apiKey}&page=${currentPage}&pageSize=${pageSize}&${queryString}`);
+    const response = await axios.get(`${baseUrl}/everything?apiKey=${apiKey}&pageSize=${pageSize}&${queryString}`);
     return response.data;
   } catch (err) {
     console.log(err.response);

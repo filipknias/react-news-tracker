@@ -3,10 +3,10 @@ import "./Home.css";
 import Article from '../../components/Article/Article';
 import Pagination from '../../components/Pagination/Pagination';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchArticles } from '../../redux/features/articlesSlice';
-import usePagination from '../../hooks/usePagination';
+import { fetchArticles, searchArticles, setCurrentPage } from '../../redux/features/articlesSlice';
 import LoadingCard from '../../components/Card/LoadingCard';
 import ErrorCard from '../../components/Card/ErrorCard';
+import { useSearchParams } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -14,12 +14,27 @@ const Home = () => {
   const articles = useSelector((state) => state.articles);
   const loading  = useSelector((state) => state.articles.loading);
   const isError  = useSelector((state) => state.articles.isError);
-  const { goToPage } = usePagination();
-
-  useEffect(() => {
-    dispatch(fetchArticles());
-  }, []);
+  const [searchParams, setSearchParams] = useSearchParams();
   
+  useEffect(() => {
+    const paramsArray = [];
+    searchParams.forEach((value, param) => paramsArray.push(param));
+
+    if (paramsArray.length === 1 && paramsArray[0] === 'page' || paramsArray.length === 0) {
+      // Fetch top trending articles with given page
+      const page = searchParams.get('page');
+      // Set page in state
+      dispatch(setCurrentPage(parseInt(page)));
+      // Fetch request
+      dispatch(fetchArticles());
+      window.scrollTo(0, 0);
+    } else if (paramsArray.length > 1) {
+      // Fetch queried articles
+      const queryString = searchParams.toString();
+      dispatch(searchArticles(queryString));
+    }
+  }, [searchParams]);
+
   return (
     <>
       {loading ? <LoadingCard /> : (
@@ -38,7 +53,13 @@ const Home = () => {
                   url={article.url}
                 />
               ))}
-              {totalPages && <Pagination pagesCount={totalPages} currentPage={currentPage} onChange={goToPage} />}
+              {totalPages && 
+                <Pagination 
+                  pagesCount={totalPages} 
+                  currentPage={currentPage} 
+                  onChange={(page) => setSearchParams({ page })} 
+                />
+              }
             </div>
           )}
         </>

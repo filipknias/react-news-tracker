@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./Filters.css";
 import Dropdown from '../Dropdown/Dropdown';
 import DateSelect from '../DateSelect/DateSelect';
@@ -87,6 +87,10 @@ const capitalizeFirstLetter = (string) => {
 const Filters = () => {
   const { language, sortBy } = useSelector((state) => state.articles.filters); 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setFilters({ from: null, to: null }));
+  }, []);
 
   return (
     <div className="filters-wrapper">

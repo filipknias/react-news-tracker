@@ -25,10 +25,14 @@ export const fetchArticles = createAsyncThunk('articles/fetchArticles', async (a
   return await fetchAllArticles(articles.pagination.pageSize, articles.pagination.currentPage);
 ;});
 
-export const searchArticles = createAsyncThunk('articles/searchArticles', async (args, { getState }) => {
-  const { articles: { pagination, filters } } = getState();
-  return await fetchQueryArticles(filters, pagination.pageSize, pagination.currentPage);
+export const searchArticles = createAsyncThunk('articles/searchArticles', async (queryString, { getState }) => {
+  const { articles } = getState();
+  return await fetchQueryArticles(queryString, articles.pagination.pageSize);
 });
+
+const getTotalPages = (totalResults, pageSize) => {
+  return Math.ceil(totalResults / pageSize);
+};
 
 export const articlesSlice = createSlice({
   name: 'articles',
@@ -46,7 +50,6 @@ export const articlesSlice = createSlice({
   },
   extraReducers: {
     [fetchArticles.pending]: (state) => {
-      state.articles = [];
       state.isError = false;
       state.loading = true;
     },
@@ -55,7 +58,7 @@ export const articlesSlice = createSlice({
       state.pagination = {
         ...state.pagination,
         totalResults: payload.totalResults,
-        totalPages: Math.ceil(payload.totalResults / state.pagination.pageSize),
+        totalPages: getTotalPages(payload.totalResults,state.pagination.pageSize),
       };
       state.loading = false;
     },
@@ -64,7 +67,6 @@ export const articlesSlice = createSlice({
       state.isError = true;
     },
     [searchArticles.pending]: (state) => {
-      state.articles = [];
       state.isError = false;
       state.loading = true;
     },
@@ -73,7 +75,7 @@ export const articlesSlice = createSlice({
       state.pagination = {
         ...state.pagination,
         totalResults: payload.totalResults,
-        totalPages: Math.ceil(payload.totalResults / state.pagination.pageSize),
+        totalPages: getTotalPages(payload.totalResults,state.pagination.pageSize),
       };
       state.loading = false;
     },
