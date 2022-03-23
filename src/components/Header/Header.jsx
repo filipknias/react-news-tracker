@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import "./Header.css";
 import SearchBar from '../SearchBar/SearchBar';
 import Filters from '../Filters/Filters';
+import { Link, useLocation } from 'react-router-dom';
 
 const daysOfWeek = [
   "Monday",
@@ -16,6 +17,7 @@ const daysOfWeek = [
 const Header = () => {
   const [today, setToday] = useState(null);
   const [date, setDate] = useState(null);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const date = new Date();
@@ -33,11 +35,16 @@ const Header = () => {
     <div className="header">
       <div className="header-container">
         <nav className="navbar">
-          <h1 className="navbar-header">News Tracker</h1>  
+          <Link to="/">
+            <h1 className="navbar-header">News Tracker</h1>  
+          </Link>
           <ul className="navbar-nav">
-            <li className="nav-item active">News</li>
-            <li className="nav-item">Trending</li>
-            <li className="nav-item">Sources</li>
+            <Link to="/">
+              <li className={`nav-item ${pathname === "/" ? "active" : ""}`}>News</li>
+            </Link>
+            <Link to="/sources">
+              <li className={`nav-item ${pathname === "/sources" ? "active" : ""}`}>Sources</li>
+            </Link>
           </ul>  
         </nav>
         <h1 className="header-text">Search for news</h1>
