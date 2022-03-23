@@ -1,17 +1,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchAllArticles, fetchQueryArticles } from '../../api';
 
+const initialFilters = {
+  language: null,
+  sortBy: 'relevancy',
+  from: null,
+  to: null,
+  q: '',
+};
+
 const initialState = {
   articles: [],
   loading: false,
   isError: false,
-  filters: {
-    language: null,
-    sortBy: 'relevancy',
-    from: null,
-    to: null,
-    q: '',
-  },
+  filters: initialFilters,
   pagination: {
     pageSize: 8,
     currentPage: 1,
@@ -54,6 +56,10 @@ export const articlesSlice = createSlice({
         ...action.payload,
       };
     },
+    resetFilters: (state) => {
+      state.filters = initialFilters;
+      state.pagination.currentPage = 1;
+    },
   },
   extraReducers: {
     [fetchArticles.pending]: (state) => {
@@ -93,6 +99,6 @@ export const articlesSlice = createSlice({
   },
 });
 
-export const { setCurrentPage, setFilters } = articlesSlice.actions;
+export const { setCurrentPage, setFilters, resetFilters } = articlesSlice.actions;
 
 export default articlesSlice.reducer;

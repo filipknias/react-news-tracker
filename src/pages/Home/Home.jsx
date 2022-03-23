@@ -23,7 +23,7 @@ const Home = () => {
 
     if (paramsArray.length === 1 && paramsArray[0] === 'page' || paramsArray.length === 0) {
       // Fetch top trending articles with given page
-      const page = searchParams.get('page');
+      const page = searchParams.get('page') || 1;
       // Set page in state
       dispatch(setCurrentPage(parseInt(page)));
       // Fetch request
@@ -37,8 +37,11 @@ const Home = () => {
   }, [searchParams]);
 
   const handlePageChange = (page) => {
-    dispatch(setCurrentPage(page));
-    setSearchParams({ ...getValidFilters(filters), page });
+    dispatch(setCurrentPage(parseInt(page)));
+    const paramsArray = [];
+    searchParams.forEach((value, param) => paramsArray.push(param));
+    if (paramsArray.length <= 1) setSearchParams({ page });
+    else setSearchParams({ ...getValidFilters(filters), page });
   };
 
   return (
