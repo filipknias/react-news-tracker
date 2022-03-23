@@ -3,7 +3,7 @@ import "./Home.css";
 import Article from '../../components/Article/Article';
 import Pagination from '../../components/Pagination/Pagination';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchArticles, searchArticles, setCurrentPage, getValidFilters } from '../../redux/features/articlesSlice';
+import { fetchArticles, searchArticles, setCurrentPage, getValidFilters, setFilters } from '../../redux/features/articlesSlice';
 import LoadingCard from '../../components/Card/LoadingCard';
 import ErrorCard from '../../components/Card/ErrorCard';
 import { useSearchParams } from "react-router-dom";
@@ -18,18 +18,20 @@ const Home = () => {
   const filters = useSelector((state) => state.articles.filters);
   
   useEffect(() => {
+    const page = searchParams.get('page') || 1;
     const paramsArray = [];
-    searchParams.forEach((value, param) => paramsArray.push(param));
+    searchParams.forEach((value, param) => paramsArray.push({ [param]: value }));
 
-    if (paramsArray.length === 1 && paramsArray[0] === 'page' || paramsArray.length === 0) {
-      // Fetch top trending articles with given page
-      const page = searchParams.get('page') || 1;
+    if (paramsArray.length === 1 && paramsArray[0].param === 'page' || paramsArray.length === 0) {
       // Set page in state
       dispatch(setCurrentPage(parseInt(page)));
       // Fetch request
       dispatch(fetchArticles());
       window.scrollTo(0, 0);
     } else if (paramsArray.length > 1) {
+      // Set state from params
+      dispatch(setCurrentPage(parseInt(page)));
+      paramsArray.forEach((param) => dispatch(setFilters(param)));
       // Fetch queried articles
       const queryString = searchParams.toString();
       dispatch(searchArticles(queryString));

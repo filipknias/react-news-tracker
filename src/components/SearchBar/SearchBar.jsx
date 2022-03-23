@@ -20,7 +20,7 @@ const Searchbar = () => {
   const handleReset = () => {
     setSearchParams({});
     dispatch(resetFilters());
-    if (filters.q.length > 0) dispatch(fetchArticles());
+    if (filters.q.length > 0) dispatch(fetchArticles());  
   };  
 
   return (

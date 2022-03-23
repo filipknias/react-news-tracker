@@ -33,7 +33,7 @@ export const searchArticles = createAsyncThunk('articles/searchArticles', async 
 });
 
 export const getValidFilters = (filters) => {
-  const validFiltersArray = Object.entries(filters).filter(([key, value]) => value !== null);
+  const validFiltersArray = Object.entries(filters).filter(([key, value]) => value !== null && value !== "");
   const validFilters = {};
   validFiltersArray.forEach(([key, value]) => validFilters[key] = value);
   return validFilters;
