@@ -17,21 +17,25 @@ const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const filters = useSelector((state) => state.articles.filters);
   
+  const paramsCount = () => {
+    let counter = 0;
+    searchParams.forEach(() => counter++);
+    return counter;
+  };
+
   useEffect(() => {
     const page = searchParams.get('page') || 1;
-    const paramsArray = [];
-    searchParams.forEach((value, param) => paramsArray.push({ [param]: value }));
-
-    if (paramsArray.length === 1 && paramsArray[0].param === 'page' || paramsArray.length === 0) {
+    if (paramsCount() === 1 && searchParams.has('page') || paramsCount() === 0) {
       // Set page in state
       dispatch(setCurrentPage(parseInt(page)));
       // Fetch request
       dispatch(fetchArticles());
+      // Scroll to top
       window.scrollTo(0, 0);
-    } else if (paramsArray.length > 1) {
+    } else if (paramsCount() > 1) {
       // Set state from params
       dispatch(setCurrentPage(parseInt(page)));
-      paramsArray.forEach((param) => dispatch(setFilters(param)));
+      searchParams.forEach((value, key) => dispatch(setFilters({ [key]: value })));
       // Fetch queried articles
       const queryString = searchParams.toString();
       dispatch(searchArticles(queryString));
@@ -39,10 +43,10 @@ const Home = () => {
   }, [searchParams]);
 
   const handlePageChange = (page) => {
+    // Set current page in state
     dispatch(setCurrentPage(parseInt(page)));
-    const paramsArray = [];
-    searchParams.forEach((value, param) => paramsArray.push(param));
-    if (paramsArray.length <= 1) setSearchParams({ page });
+    // Check what params to add on next page
+    if (paramsCount() <= 1) setSearchParams({ page });
     else setSearchParams({ ...getValidFilters(filters), page });
   };
 
