@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchAllArticles, fetchQueryArticles } from '../../api';
+import axios from 'axios';
 
 const initialFilters = {
   language: null,

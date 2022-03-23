@@ -25,11 +25,13 @@ const Home = () => {
 
   useEffect(() => {
     const page = searchParams.get('page') || 1;
+    let promise;
+
     if (paramsCount() === 1 && searchParams.has('page') || paramsCount() === 0) {
       // Set page in state
       dispatch(setCurrentPage(parseInt(page)));
       // Fetch request
-      dispatch(fetchArticles());
+      promise = dispatch(fetchArticles());
       // Scroll to top
       window.scrollTo(0, 0);
     } else if (paramsCount() > 1) {
@@ -38,8 +40,12 @@ const Home = () => {
       searchParams.forEach((value, key) => dispatch(setFilters({ [key]: value })));
       // Fetch queried articles
       const queryString = searchParams.toString();
-      dispatch(searchArticles(queryString));
+      promise = dispatch(searchArticles(queryString));
     }
+
+    return () => {
+      promise.abort();
+    };
   }, [searchParams]);
 
   const handlePageChange = (page) => {
