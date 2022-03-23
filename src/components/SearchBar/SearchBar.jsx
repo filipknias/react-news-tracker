@@ -13,14 +13,12 @@ const Searchbar = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(setCurrentPage(1));
     setSearchParams({ ...getValidFilters(filters), page: 1 });
   };
 
   const handleReset = () => {
     setSearchParams({});
     dispatch(resetFilters());
-    if (filters.q.length > 0) dispatch(fetchArticles());  
   };  
 
   return (
