@@ -16,8 +16,12 @@
   font-size: 45px;
 }
 
-.card-container .card-icon.card-icon-loading {
+.card-container .card-icon.card-icon-loading, 
+.card-container .card-icon.card-icon-results {
   color: var(--dark-blue);
+}
+
+.card-container .card-icon.card-icon-loading {
   animation: spinner 0.8s infinite;
 }
 

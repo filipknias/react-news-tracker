@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchArticles, searchArticles, setCurrentPage, getValidFilters, setFilters } from '../../redux/features/articlesSlice';
 import LoadingCard from '../../components/Card/LoadingCard';
 import ErrorCard from '../../components/Card/ErrorCard';
+import EmptyResultsCard from '../../components/Card/EmptyResultsCard';
 import { useSearchParams } from "react-router-dom";
 
 const Home = () => {
@@ -62,25 +63,31 @@ const Home = () => {
         <>
           {isError ?  <ErrorCard /> : (
             <div className="articles-container">
-              {articles.articles.map((article) => (
-                <Article 
-                  key={article.title}
-                  title={article.title}
-                  description={article.description}
-                  photo={article.urlToImage}
-                  author={article.author}
-                  publishedAt={article.publishedAt}
-                  source={article.source.name}
-                  url={article.url}
-                />
-              ))}
-              {totalPages && 
-                <Pagination 
-                  pagesCount={totalPages} 
-                  currentPage={currentPage} 
-                  onChange={(page) => handlePageChange(page)} 
-                />
-              }
+              <>
+                {articles.articles.length > 0 ? (
+                  <>
+                    {articles.articles.map((article) => (
+                      <Article 
+                        key={article.title}
+                        title={article.title}
+                        description={article.description}
+                        photo={article.urlToImage}
+                        author={article.author}
+                        publishedAt={article.publishedAt}
+                        source={article.source.name}
+                        url={article.url}
+                      />
+                    ))}
+                    {totalPages && 
+                      <Pagination 
+                        pagesCount={totalPages} 
+                        currentPage={currentPage} 
+                        onChange={(page) => handlePageChange(page)} 
+                      />
+                    }
+                  </>
+                ) : <EmptyResultsCard />}
+              </>
             </div>
           )}
         </>
