@@ -17,7 +17,7 @@ const Searchbar = () => {
   };
 
   const handleReset = () => {
-    setSearchParams({});
+    if (searchParams.has('q')) setSearchParams({});
     dispatch(resetFilters());
   };  
 
@@ -25,7 +25,7 @@ const Searchbar = () => {
     <form className="search-bar" onSubmit={handleSubmit}>
       <div className="input-container">
         <button type="button" className="input-button" title="Reset" onClick={handleReset}>
-          <FontAwesomeIcon icon={faClose  } className="button-icon" style={{ fontSize: '30px' }} />
+          <FontAwesomeIcon icon={faClose} className="button-icon" style={{ fontSize: '30px' }} />
         </button>
         <input 
           type="text" 
