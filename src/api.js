@@ -14,7 +14,7 @@ export const fetchAllArticles = async (pageSize, currentPage = 1) => {
     const response = await axios.get(endpoint);
     return response.data;
   } catch (err) {
-    throw new Error();
+    throw new Error(err);
   }
 };
 
@@ -24,7 +24,6 @@ export const fetchQueryArticles = async (queryString, pageSize) => {
     const response = await axios.get(`${baseUrl}/everything?apiKey=${apiKey}&pageSize=${pageSize}&${queryString}`);
     return response.data;
   } catch (err) {
-    console.log(err.response);
-    throw new Error();
+    throw new Error(err);
   }
 };

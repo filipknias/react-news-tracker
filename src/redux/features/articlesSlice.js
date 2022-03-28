@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchAllArticles, fetchQueryArticles } from '../../api';
-import axios from 'axios';
 
 const initialFilters = {
   language: null,
@@ -13,7 +12,7 @@ const initialFilters = {
 const initialState = {
   articles: [],
   loading: false,
-  isError: false,
+  error: null,
   filters: initialFilters,
   pagination: {
     pageSize: 8,
@@ -23,14 +22,22 @@ const initialState = {
   },
 };
 
-export const fetchArticles = createAsyncThunk('articles/fetchArticles', async (args, { getState }) => {
+export const fetchArticles = createAsyncThunk('articles/fetchArticles', async (args, { getState, rejectWithValue }) => {
   const { articles } = getState();
-  return await fetchAllArticles(articles.pagination.pageSize, articles.pagination.currentPage);
+  try {
+    return await fetchAllArticles(articles.pagination.pageSize, articles.pagination.currentPage);
+  } catch (err) {
+    return rejectWithValue(err.message);
+  }
 ;});
 
-export const searchArticles = createAsyncThunk('articles/searchArticles', async (queryString, { getState }) => {
+export const searchArticles = createAsyncThunk('articles/searchArticles', async (queryString, { getState, rejectWithValue }) => {
   const { articles } = getState();
-  return await fetchQueryArticles(queryString, articles.pagination.pageSize);
+  try {
+    return await fetchQueryArticles(queryString, articles.pagination.pageSize);
+  } catch (err) {
+    return rejectWithValue(err.message);
+  }
 });
 
 export const getValidFilters = (filters) => {
@@ -64,7 +71,7 @@ export const articlesSlice = createSlice({
   },
   extraReducers: {
     [fetchArticles.pending]: (state) => {
-      state.isError = false;
+      state.error = null;
       state.loading = true;
     },
     [fetchArticles.fulfilled]: (state, { payload }) => {
@@ -76,12 +83,12 @@ export const articlesSlice = createSlice({
       };
       state.loading = false;
     },
-    [fetchArticles.rejected]: (state) => {
+    [fetchArticles.rejected]: (state, { payload }) => {
       state.loading = false;
-      state.isError = true;
+      state.error = payload;
     },
     [searchArticles.pending]: (state) => {
-      state.isError = false;
+      state.error = null;
       state.loading = true;
     },
     [searchArticles.fulfilled]: (state, { payload }) => {
@@ -93,9 +100,9 @@ export const articlesSlice = createSlice({
       };
       state.loading = false;
     },
-    [searchArticles.rejected]: (state) => {
+    [searchArticles.rejected]: (state, { payload }) => {
       state.loading = false;
-      state.isError = true;
+      state.error = payload;
     },
   },
 });

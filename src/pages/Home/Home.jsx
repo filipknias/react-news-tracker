@@ -14,7 +14,7 @@ const Home = () => {
   const { totalPages, currentPage } = useSelector((state) => state.articles.pagination);
   const articles = useSelector((state) => state.articles);
   const loading  = useSelector((state) => state.articles.loading);
-  const isError  = useSelector((state) => state.articles.isError);
+  const error  = useSelector((state) => state.articles.error);
   const [searchParams, setSearchParams] = useSearchParams();
   const filters = useSelector((state) => state.articles.filters);
   
@@ -61,7 +61,7 @@ const Home = () => {
     <>
       {loading ? <LoadingCard /> : (
         <>
-          {isError ?  <ErrorCard /> : (
+          {error ?  <ErrorCard message={error} /> : (
             <div className="articles-container">
               <>
                 {articles.articles.length > 0 ? (
