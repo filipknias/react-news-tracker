@@ -27,10 +27,41 @@
   font-size: 25px;
 }
 
+.search-bar .input-container .input-button .button-icon.button-icon-reset {
+  font-size: 35px;
+}
+
 .search-bar .input-container .text-input {
   color: black;
   border: none;
   outline: none;
   font-size: 20px;
   width: 100%;
+}
+
+@media only screen and (max-width: 1250px) {
+  .search-bar .input-container .text-input {
+    font-size: 18px;
+  }
+  .search-bar .input-container .input-button .button-icon {
+    font-size: 20px;
+  }
+  .search-bar .input-container .input-button .button-icon.button-icon-reset {
+    font-size: 25px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .search-bar .input-container .text-input {
+    font-size: 15px;
+  }
+  .search-bar .input-container .input-button .button-icon {
+    font-size: 18px;
+  }
+  .search-bar .input-container .input-button .button-icon.button-icon-reset {
+    font-size: 23px;
+  }
+  .search-bar .input-container {
+    padding: 10px 15px; 
+  }
 }

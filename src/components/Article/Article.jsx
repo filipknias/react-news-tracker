@@ -6,7 +6,8 @@ import { faCalendar, faGlobe, faUser } from '@fortawesome/free-solid-svg-icons'
 const formatPublishDate = (dateString) => {
   const splittedDate = dateString.split('T').join(' ');
   const date = splittedDate.slice(0, splittedDate.length - 1);
-  return date;
+  // return date;
+  return splittedDate[0];
 };
 
 const Article = ({ photo, title, publishedAt, description, source, author, url }) => {
@@ -21,7 +22,7 @@ const Article = ({ photo, title, publishedAt, description, source, author, url }
         <div className="article-footer">
           <div className="article-footer-item">
             <FontAwesomeIcon icon={faGlobe} className="article-footer-item-icon" />
-            <p className="article-footer-item-text">{source}</p>
+            <p className="article-footer-item-text">{source ? source : "Unknown"}</p>
           </div>
           <div className="article-footer-item">
             <FontAwesomeIcon icon={faCalendar} className="article-footer-item-icon" />
@@ -29,7 +30,7 @@ const Article = ({ photo, title, publishedAt, description, source, author, url }
           </div>
           <div className="article-footer-item">
             <FontAwesomeIcon icon={faUser} className="article-footer-item-icon" />
-            <p className="article-footer-item-text">{author ? author : "Unknown"}</p>
+            <p className="article-footer-item-text">{source ? author : "Unknown"}</p>
           </div>
         </div> 
       </div>

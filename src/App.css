@@ -24,6 +24,31 @@ ul {
   margin: 30px auto;
   transform: translateY(-200px);
 }
+  
+@media only screen and (max-width: 1550px) {
+  .routes-container {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .routes-container {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .routes-container {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .routes-container {
+    width: 100%;
+    padding: 0 20px; 
+  }
+}
 
 :root {
   --dark-blue: #204ECF;

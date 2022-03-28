@@ -8,4 +8,18 @@
   font-weight: 500;
   padding: var(--input-padding);
   cursor: pointer;
+  width: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+  .custom-date-input {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .custom-date-input {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
 }

@@ -8,9 +8,30 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  z-index: 20;
 }
 
 .scroll-to-top .scroll-icon {
   color: white;
   font-size: 35px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .scroll-to-top {
+    bottom: 30px;
+    right: 30px;
+  }
+  .scroll-to-top .scroll-icon {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .scroll-to-top {
+    bottom: 20px;
+    right: 20px;
+  }
+  .scroll-to-top .scroll-icon {
+    font-size: 25px;
+  }
 }

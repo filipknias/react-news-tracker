@@ -81,3 +81,16 @@
     pointer-events: none;
   }
 }
+
+@media only screen and (max-width: 800px) {
+  .dropdown-trigger, .dropdown-item {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .dropdown-trigger, .dropdown-item {
+    font-size: 13px;
+    padding: 5px 10px;
+  }
+}

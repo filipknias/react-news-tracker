@@ -48,3 +48,30 @@
     transform: rotate(360deg);
   }
 }
+
+@media only screen and (max-width: 1250px) {
+  .card-container .card-title {
+    font-size: 25px;
+  }
+  .card-container .card-description {
+    font-size: 18px;
+  }
+  .card-container .card-icon {
+    font-size: 40px;
+  }
+} 
+
+@media only screen and (max-width: 800px) {
+  .card-container .card-title {
+    font-size: 22px;
+  }
+  .card-container .card-description {
+    font-size: 16px;
+  }
+  .card-container .card-icon {
+    font-size: 35px;
+  }
+  .card {
+    padding: 15px 30px;
+  } 
+}
