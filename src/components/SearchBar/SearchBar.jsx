@@ -1,20 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./SearchBar.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faClose } from '@fortawesome/free-solid-svg-icons';
 import { setFilters, getValidFilters, resetFilters } from '../../redux/features/articlesSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
 
 const Searchbar = () => {
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const dispatch = useDispatch();
   const filters = useSelector((state) => state.articles.filters);
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSearchParams({ ...getValidFilters(filters), page: 1 });
+    setFormSubmitted(true);
   };
 
   const handleReset = () => {
@@ -23,9 +26,17 @@ const Searchbar = () => {
   };  
 
   useEffect(() => {
+    if (!formSubmitted) return;
+    // Change route with search params when form is submitted
     const queryString = searchParams.toString();
     navigate(`/?${queryString}`);
-  }, [searchParams]);
+  }, [formSubmitted]);
+
+  useEffect(() => {
+    // Reset filters and state when changing route
+    setFormSubmitted(false);
+    dispatch(resetFilters());
+  }, [pathname]);
 
   return (
     <form className="search-bar" onSubmit={handleSubmit}>
