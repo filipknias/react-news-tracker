@@ -27,3 +27,7 @@ export const fetchQueryArticles = async (queryString, pageSize) => {
     throw new Error(err);
   }
 };
+
+export const fetchSources = async () => {
+  
+};

@@ -6,8 +6,7 @@ import { faCalendar, faGlobe, faUser } from '@fortawesome/free-solid-svg-icons'
 const formatPublishDate = (dateString) => {
   const splittedDate = dateString.split('T').join(' ');
   const date = splittedDate.slice(0, splittedDate.length - 1);
-  // return date;
-  return splittedDate[0];
+  return date;
 };
 
 const Article = ({ photo, title, publishedAt, description, source, author, url }) => {
