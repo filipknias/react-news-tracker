@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import Pagination from '../../components/Pagination/Pagination';
+import LoadingCard from '../../components/Card/LoadingCard';
+import ErrorCard from '../../components/Card/ErrorCard';
 
 const Sources = () => {
   const [sources, setSources] = useState([]);
@@ -14,7 +16,6 @@ const Sources = () => {
   const [error, setError] = useState(null);
   const [totalPages, setTotalPages] = useState(1);
   const sourcesPerPage = 5;
-  // const totalPages = Math.floor(sources.length / sourcesPerPage);
 
   const getSources = async () => {
     setError(null);
@@ -57,52 +58,65 @@ const Sources = () => {
   };
 
   return (
-    <div className="sources-container">
-      <div className="search-container">
-        <FontAwesomeIcon icon={faSearch} className="search-icon" />
-        <input 
-          type="text" 
-          className="search-input" 
-          placeholder="Search sources..." 
-          onChange={searchSources}
+    <>
+      {loading ? (
+        <LoadingCard 
+          loadingText="Loading sources..."
+          loadingDescription="Sources are loading. Please wait"
         />
-      </div>
-      <ul className="source-list">
-        {displayedSources.length > 0 ? (
-          <>
-            {displayedSources.map((source) => (
-              <li className="source-list-item" key={source.id}>
-                <div className="source-item-left">
-                  <img 
-                    src={`https://countryflagsapi.com/svg/${source.country}`} 
-                    alt={source.country}
-                    className="source-flag" 
-                  />
-                  <a href={source.url} className="source-link" target="_blank">{source.name}</a>
-                </div>
-                <div className="source-item-right">
-                  <a href={source.url} target="_blank" className="source-item-link">
-                    Visit source
-                    <FontAwesomeIcon icon={faChevronRight} />
-                  </a>
-                  <Link to={`/?sources=${source.id}`} className="source-item-link">
-                    Source news
-                    <FontAwesomeIcon icon={faChevronRight} />
-                  </Link>
-                </div>
-              </li>
-            ))}
-            <Pagination 
-              currentPage={currentPage} 
-              pagesCount={totalPages}
-              onChange={(page) => setCurrentPage(page)} 
-            /> 
-          </>
-        ) : (
-          <p className="empty-sources-text">No sources found</p>
-        )}
-      </ul>
-    </div>
+      ) : (
+        <>
+          {error ? <ErrorCard message={error} /> : (
+            <div className="sources-container">
+              <div className="search-container">
+                <FontAwesomeIcon icon={faSearch} className="search-icon" />
+                <input 
+                  type="text" 
+                  className="search-input" 
+                  placeholder="Search sources..." 
+                  onChange={searchSources}
+                />
+              </div>
+              <ul className="source-list">
+                {displayedSources.length > 0 ? (
+                  <>
+                    {displayedSources.map((source) => (
+                      <li className="source-list-item" key={source.id}>
+                        <div className="source-item-left">
+                          <img 
+                            src={`https://countryflagsapi.com/svg/${source.country}`} 
+                            alt={source.country}
+                            className="source-flag" 
+                          />
+                          <a href={source.url} className="source-link" target="_blank">{source.name}</a>
+                        </div>
+                        <div className="source-item-right">
+                          <a href={source.url} target="_blank" className="source-item-link">
+                            Visit source
+                            <FontAwesomeIcon icon={faChevronRight} />
+                          </a>
+                          <Link to={`/?sources=${source.id}`} className="source-item-link">
+                            Source news
+                            <FontAwesomeIcon icon={faChevronRight} />
+                          </Link>
+                        </div>
+                      </li>
+                    ))}
+                    <Pagination 
+                      currentPage={currentPage} 
+                      pagesCount={totalPages}
+                      onChange={(page) => setCurrentPage(page)} 
+                    /> 
+                  </>
+                ) : (
+                  <p className="empty-sources-text">No sources found</p>
+                )}
+              </ul>
+            </div>
+          )}
+        </>
+      )}
+    </>
   )
 }
 
