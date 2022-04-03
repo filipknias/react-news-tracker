@@ -3,14 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Card from './Card';
 
-const LoadingCard = () => {
+const LoadingCard = ({ loadingText, loadingDescription }) => {
   return (
     <Card>
       <div className="card-container">
         <FontAwesomeIcon icon={faSpinner} className="card-icon card-icon-loading" />
         <div>
-          <h1 className="card-title">Loading articles...</h1>
-          <p className="card-description">Your articles are loading. Please wait</p>
+          <h1 className="card-title">{loadingText}</h1>
+          <p className="card-description">{loadingDescription}</p>
         </div>
       </div>
     </Card>

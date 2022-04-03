@@ -60,7 +60,12 @@ const Home = () => {
 
   return (
     <>
-      {loading ? <LoadingCard /> : (
+      {loading ? (
+        <LoadingCard 
+          loadingText="Loading articles..." 
+          loadingDescription="Your articles are loading. Please wait" 
+        />
+      ) : (
         <>
           {error ?  <ErrorCard message={error} /> : (
             <div className="articles-container">
