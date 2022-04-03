@@ -93,11 +93,11 @@ const Sources = () => {
                         <div className="source-item-right">
                           <a href={source.url} target="_blank" className="source-item-link">
                             Visit source
-                            <FontAwesomeIcon icon={faChevronRight} />
+                            <FontAwesomeIcon icon={faChevronRight} className="source-item-link-icon" />
                           </a>
                           <Link to={`/?sources=${source.id}`} className="source-item-link">
                             Source news
-                            <FontAwesomeIcon icon={faChevronRight} />
+                            <FontAwesomeIcon icon={faChevronRight} className="source-item-link-icon" />
                           </Link>
                         </div>
                       </li>
