@@ -24,7 +24,7 @@ const Header = () => {
     const currentWeekDay = date.getDay();
     let currentDay = date.getDate();  
     if (currentDay < 10) currentDay = "0" + currentDay;
-    let currentMonth = date.getMonth();
+    let currentMonth = date.getMonth() + 1;
     if (currentMonth < 10) currentMonth = "0" + currentMonth;
     const currentYear = date.getFullYear();
     setToday(daysOfWeek[currentWeekDay]);
