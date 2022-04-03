@@ -16,7 +16,6 @@ const Home = () => {
   const loading  = useSelector((state) => state.articles.loading);
   const error  = useSelector((state) => state.articles.error);
   const [searchParams, setSearchParams] = useSearchParams();
-  const filters = useSelector((state) => state.articles.filters);
   
   const paramsCount = () => {
     let counter = 0;
@@ -26,19 +25,20 @@ const Home = () => {
 
   useEffect(() => {
     const page = searchParams.get('page') || 1;
+    // Set page in state
+    dispatch(setCurrentPage(parseInt(page)));
     let promise;
 
     if (paramsCount() === 1 && searchParams.has('page') || paramsCount() === 0) {
-      // Set page in state
-      dispatch(setCurrentPage(parseInt(page)));
       // Fetch request
       promise = dispatch(fetchArticles());
       // Scroll to top
       window.scrollTo(0, 0);
-    } else if (paramsCount() > 1) {
-      // Set state from params
-      dispatch(setCurrentPage(parseInt(page)));
-      searchParams.forEach((value, key) => dispatch(setFilters({ [key]: value })));
+    } else if (paramsCount() >= 1) {
+      // Set filters state
+      searchParams.forEach((value, key) => {
+        if (key !== 'sources') dispatch(setFilters({ [key]: value }));
+      });
       // Fetch queried articles
       const queryString = searchParams.toString();
       promise = dispatch(searchArticles(queryString));
@@ -52,9 +52,10 @@ const Home = () => {
   const handlePageChange = (page) => {
     // Set current page in state
     dispatch(setCurrentPage(parseInt(page)));
-    // Check what params to add on next page
-    if (paramsCount() <= 1) setSearchParams({ page });
-    else setSearchParams({ ...getValidFilters(filters), page });
+    // Set all params to search params state
+    const queryParams = {};
+    searchParams.forEach((value, key) => queryParams[key] = value);
+    setSearchParams({ ...queryParams, page });
   };
 
   return (

@@ -52,6 +52,7 @@ ul {
 
 :root {
   --dark-blue: #204ECF;
+  --dark-blue-hover: #193fa5;
   --light-blue: rgba(166, 212, 255, 0.904);
   --light-blue-text: #061f31;
   --input-border-radius: 8px;

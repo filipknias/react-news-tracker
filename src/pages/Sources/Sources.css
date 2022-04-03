@@ -1,0 +1,98 @@
+.sources-container {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 2px 2px 3px 0px #9c9c9c;
+  padding: 40px;
+  border: 1px solid #bdbdbd;
+}
+
+.source-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.source-list .source-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  font-size: 25px;
+  font-weight: 500;
+  border-bottom: 2px solid #bdbdbd;
+  padding-bottom: 20px;
+}
+
+.source-list .source-list-item .source-item-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.source-list .source-list-item .source-item-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.source-list .source-list-item .source-flag {
+  height: 30px;
+}
+
+.source-list .source-list-item .source-link {
+  color: #2448b3;
+}
+
+.source-list .source-list-item .source-link:hover {
+  text-decoration: underline;
+}
+
+.source-list .source-list-item .source-item-link {
+  background-color: var(--dark-blue);
+  color: white;
+  text-align: center;
+  padding: 5px 25px;
+  border-radius: 5px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.2s ease-out;
+}
+
+.source-list .source-list-item .source-item-link:hover {
+  background-color: var(--dark-blue-hover);
+}
+
+.sources-container .search-container {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #bdbdbd;
+  margin-bottom: 30px;
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+
+.sources-container .search-container .search-icon {
+  font-size: 18px;
+  color: #9e9e9e;
+}
+
+.sources-container .search-container .search-input {
+  outline: none;
+  border: none;
+  font-size: 18px;
+  padding: 5px 15px;
+  flex: 1;
+}
+
+.sources-container .empty-sources-text {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 500;
+}

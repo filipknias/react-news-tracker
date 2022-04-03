@@ -29,5 +29,12 @@ export const fetchQueryArticles = async (queryString, pageSize) => {
 };
 
 export const fetchSources = async () => {
-  
+  try {
+    // Fetch articles sources
+    const endpoint = `${baseUrl}/top-headlines/sources?apiKey=${apiKey}`;
+    const response = await axios.get(endpoint);
+    return response.data;
+  } catch (err) {
+    throw new Error(err);
+  }
 };

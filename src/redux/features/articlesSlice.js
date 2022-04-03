@@ -48,7 +48,7 @@ export const getValidFilters = (filters) => {
 };
 
 const getTotalPages = (totalResults, pageSize) => {
-  return Math.ceil(totalResults / pageSize);
+  return Math.floor(totalResults / pageSize);
 };
 
 export const articlesSlice = createSlice({
