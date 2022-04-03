@@ -5,7 +5,7 @@ const apiKey = process.env.REACT_APP_NEWS_API_KEY;
 export const fetchAllArticles = async (pageSize, currentPage = 1) => {
   try {
     // Get ip address
-    const ipApiUrl = 'http://api.ipapi.com';
+    const ipApiUrl = 'https://api.ipapi.com';
     const ipApiKey = process.env.REACT_APP_IP_API_KEY;
     const ipResponse = await axios.get(`${ipApiUrl}/check?access_key=${ipApiKey}`);
     const countryCode = ipResponse.data.country_code.toLowerCase();
