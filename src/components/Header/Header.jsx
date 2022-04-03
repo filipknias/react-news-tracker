@@ -5,13 +5,13 @@ import Filters from '../Filters/Filters';
 import { Link, useLocation } from 'react-router-dom';
 
 const daysOfWeek = [
+  "Sunday",
   "Monday",
   "Tuesday",
   "Wednesday",
   "Thursday",
   "Friday",
   "Saturday",
-  "Sunday",
 ];
 
 const Header = () => {
@@ -27,7 +27,7 @@ const Header = () => {
     let currentMonth = date.getMonth();
     if (currentMonth < 10) currentMonth = "0" + currentMonth;
     const currentYear = date.getFullYear();
-    setToday(daysOfWeek[currentWeekDay - 1]);
+    setToday(daysOfWeek[currentWeekDay]);
     setDate(`${currentDay}.${currentMonth}.${currentYear}`);
   }, []);
 
