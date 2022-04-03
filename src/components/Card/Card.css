@@ -62,6 +62,9 @@
 } 
 
 @media only screen and (max-width: 800px) {
+  .card-container {
+    gap: 20px;
+  }
   .card-container .card-title {
     font-size: 22px;
   }
@@ -72,6 +75,6 @@
     font-size: 35px;
   }
   .card {
-    padding: 15px 30px;
+    padding: 15px 20px;
   } 
 }
