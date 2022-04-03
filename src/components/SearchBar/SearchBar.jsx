@@ -21,7 +21,7 @@ const Searchbar = () => {
   };
 
   const handleReset = () => {
-    if (searchParams.has('q')) setSearchParams({});
+    if (searchParams.has('q') || searchParams.has('sources') ) setSearchParams({});
     dispatch(resetFilters());
   };  
 
