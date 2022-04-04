@@ -1,4 +1,11 @@
-# Getting Started with Create React App
+# React News Tracker
+
+Application allows you to track latest news around the world.
+
+Main features: 
+- Browse latest news around the world
+- Search for news
+- Browse news sources
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
