@@ -19,4 +19,4 @@
 - http://api.ipapi.com
 
 ### Live preview
-- https://react-news-tracker.herokuapp.com/
+- App works only on localhost because of news api restrictions
